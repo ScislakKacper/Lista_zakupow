@@ -2,6 +2,7 @@ package com.kacper.listazadan;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,6 +54,12 @@ public class MainActivity2 extends AppCompatActivity {
                 } else {
                     Toast.makeText(MainActivity2.this, "Uzupełnij formularz", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        lista_produktow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainActivity2.this, produkty_lista.get(i).getOpis(), Toast.LENGTH_SHORT).show();
             }
         });
     }
