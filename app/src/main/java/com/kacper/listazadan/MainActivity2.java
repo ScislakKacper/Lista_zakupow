@@ -62,5 +62,15 @@ public class MainActivity2 extends AppCompatActivity {
                 Toast.makeText(MainActivity2.this, produkty_lista.get(i).getOpis(), Toast.LENGTH_SHORT).show();
             }
         });
+        lista_produktow.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                cena -= produkty_lista.get(i).getCena();
+                suma_ceny.setText("Cena: " + cena);
+                produkty_lista.remove(i);
+                arrayAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
     }
 }
