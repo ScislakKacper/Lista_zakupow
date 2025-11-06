@@ -1,6 +1,7 @@
 package com.kacper.listazadan;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,5 +40,13 @@ public class MainActivity extends AppCompatActivity {
         listaProduktow.add("Sok");
         arrayAdapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, listaProduktow);
         listaZakupow.setAdapter(arrayAdapter);
+        przyciskDodaj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String dodawanyProdukt = produkt.getText().toString();
+                listaProduktow.add(dodawanyProdukt);
+                arrayAdapter.notifyDataSetChanged();
+            }
+        });
     }
 }
