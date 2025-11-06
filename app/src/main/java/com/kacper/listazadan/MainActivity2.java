@@ -1,11 +1,13 @@
 package com.kacper.listazadan;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,5 +42,18 @@ public class MainActivity2 extends AppCompatActivity {
         produkty_lista = new ArrayList<>();
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, produkty_lista);
         lista_produktow.setAdapter(arrayAdapter);
+        przycisk_dodaj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!nazwa_produktu.getText().toString().isEmpty() && !opis_produktu.getText().toString().isEmpty() && !cena_produktu.getText().toString().isEmpty()) {
+                    produkty_lista.add(new Produkt(nazwa_produktu.getText().toString(), opis_produktu.getText().toString(), Float.parseFloat(cena_produktu.getText().toString())));
+                    cena += Float.parseFloat(cena_produktu.getText().toString());
+                    suma_ceny.setText("Cena: " + cena);
+                    arrayAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(MainActivity2.this, "Uzupełnij formularz", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
