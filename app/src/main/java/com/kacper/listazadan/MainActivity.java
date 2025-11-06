@@ -1,11 +1,15 @@
 package com.kacper.listazadan;
 
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +49,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String dodawanyProdukt = produkt.getText().toString();
                 listaProduktow.add(dodawanyProdukt);
+                arrayAdapter.notifyDataSetChanged();
+            }
+        });
+        listaZakupow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //listaProduktow.remove(i);
+                TextView textview = (TextView) view;
+                if(textview.getPaintFlags()== Paint.STRIKE_THRU_TEXT_FLAG){
+                    textview.setPaintFlags(0);
+                    textview.setBackgroundColor(Color.WHITE);
+
+                }
+                else{
+                    textview.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+                    textview.setBackgroundColor(Color.BLUE);
+                }
                 arrayAdapter.notifyDataSetChanged();
             }
         });
